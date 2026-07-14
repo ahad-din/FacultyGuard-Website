@@ -1,31 +1,35 @@
 [build]
   publish = "."
 
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, stale-while-revalidate=86400"
+
 [[redirects]]
   from = "/services"
-  to = "/services.html"
-  status = 200
-[[redirects]]
-  from = "/pricing"
-  to = "/pricing.html"
-  status = 200
+  to = "/fg-systems"
+  status = 301
+
 [[redirects]]
   from = "/resources"
-  to = "/resources.html"
-  status = 200
+  to = "/why-facultyguard"
+  status = 301
+
 [[redirects]]
-  from = "/about"
-  to = "/about.html"
-  status = 200
+  from = "/services.html"
+  to = "/fg-systems"
+  status = 301
+
 [[redirects]]
-  from = "/contact"
-  to = "/contact.html"
-  status = 200
-[[redirects]]
-  from = "/privacy"
-  to = "/privacy.html"
-  status = 200
-[[redirects]]
-  from = "/terms"
-  to = "/terms.html"
-  status = 200
+  from = "/resources.html"
+  to = "/why-facultyguard"
+  status = 301
