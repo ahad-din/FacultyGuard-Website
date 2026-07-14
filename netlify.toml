@@ -1,31 +1,34 @@
 [build]
   publish = "."
 
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
 [[redirects]]
-  from = "/services"
-  to = "/services.html"
+  from = "/faculty-workflow-systems"
+  to = "/faculty-workflow-systems.html"
   status = 200
 [[redirects]]
-  from = "/pricing"
-  to = "/pricing.html"
+  from = "/grading-workflow-tools"
+  to = "/grading-workflow-tools.html"
   status = 200
 [[redirects]]
-  from = "/resources"
-  to = "/resources.html"
+  from = "/academic-integrity-templates"
+  to = "/academic-integrity-templates.html"
   status = 200
 [[redirects]]
-  from = "/about"
-  to = "/about.html"
+  from = "/ai-policy-templates-for-faculty"
+  to = "/ai-policy-templates-for-faculty.html"
   status = 200
 [[redirects]]
-  from = "/contact"
-  to = "/contact.html"
+  from = "/faculty-documentation-system"
+  to = "/faculty-documentation-system.html"
   status = 200
 [[redirects]]
-  from = "/privacy"
-  to = "/privacy.html"
-  status = 200
-[[redirects]]
-  from = "/terms"
-  to = "/terms.html"
+  from = "/online-instructor-toolkit"
+  to = "/online-instructor-toolkit.html"
   status = 200
