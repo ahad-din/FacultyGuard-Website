@@ -10,13 +10,15 @@ Static, accessible, GitHub- and Netlify-ready website.
 
 ## Structure
 - `index.html` — Home
-- `services.html` — Services
+- `why-facultyguard.html` — Mission, method, philosophy, and terminology
+- `fg-systems.html` — Seven FacultyGuard Systems
 - `pricing.html` — Pricing
-- `resources.html` — Standards Brief library
-- `about.html` — Founder and philosophy
+- `faculty-profile.html` — Founder profile and professional background
+- `about.html` — Practice story and longer founder biography
 - `contact.html` — Netlify intake form
-- `privacy.html`, `terms.html`, `404.html`
-- `assets/` — Shared CSS, JavaScript, and SVG brand mark
+- `thank-you.html` — Form confirmation
+- `privacy.html`, `terms.html`, `404.html` — Supporting pages
+- `assets/` — Shared CSS, JavaScript, and optimized brand images
 
 ## Version
-v1.0.0 — Fresh GitHub/Netlify rebuild, July 2026.
+v2.0.0 — FacultyGuard content and implementation update, July 2026.
