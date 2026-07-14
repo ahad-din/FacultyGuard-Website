@@ -1,0 +1,869 @@
+/* ==========================================================================
+   FACULTY GUARD — STYLESHEET
+   Sectioned for maintainability. Each section below is self-contained —
+   edit within a section without needing to scroll through the whole file.
+
+   Contents:
+     1.  Variables & Reset
+     2.  Base / Body Background
+     3.  Header & Navigation
+     4.  Hero
+     5.  Ticker
+     6.  Section Base (kicker, section-title, copy, wrap)
+     7.  Cards (grid tiles used across Problem / Included / Reuse)
+     8.  Testimonials (currently no matching markup — see note)
+     9.  Pricing Packages
+     10. FAQ
+     11. Founder / Credentials Strip
+     12. Final CTA
+     13. Footer
+     14. Responsive Breakpoints
+     15. Accessibility (reduced motion)
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. VARIABLES & RESET
+   -------------------------------------------------------------------------- */
+:root {
+  --silver:#d8dce2;
+  --silver2:#f6f7fa;
+  --purple2:#b685ff;
+  --line:rgba(216,220,226,.18);
+  --glow:rgba(127,53,216,.42);
+}
+
+* { box-sizing:border-box; margin:0; padding:0; }
+
+html { scroll-behavior:smooth; overflow-x:hidden; }
+
+a { color:inherit; }
+
+
+/* --------------------------------------------------------------------------
+   2. BASE / BODY BACKGROUND
+   Layered radial gradients + grid-line overlays give the page its dark,
+   textured look. body::before is the faint grid, body::after is the faint
+   scanline texture. Both are decorative and pointer-events:none.
+   -------------------------------------------------------------------------- */
+body {
+  position:relative;
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 20% 5%, rgba(127,53,216,.34), transparent 25%),
+    radial-gradient(circle at 82% 18%, rgba(182,133,255,.18), transparent 24%),
+    linear-gradient(145deg, #020203, #0d0d12 55%, #050208);
+  color:var(--silver);
+  font-family:Inter, system-ui, sans-serif;
+  overflow-x:hidden;
+}
+
+body::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size:52px 52px;
+  opacity:.6;
+  z-index:0;
+}
+
+body::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:repeating-linear-gradient(0deg, rgba(255,255,255,.025) 0, rgba(255,255,255,.025) 1px, transparent 1px, transparent 5px);
+  opacity:.18;
+  z-index:999;
+}
+
+
+/* --------------------------------------------------------------------------
+   3. HEADER & NAVIGATION
+   -------------------------------------------------------------------------- */
+.topbar {
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:100;
+  background:rgba(3,3,5,.78);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
+}
+
+.nav {
+  max-width:1360px;
+  margin:auto;
+  padding:14px 30px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+}
+
+.brand {
+  display:flex;
+  align-items:center;
+  gap:15px;
+  text-decoration:none;
+}
+
+.brand img {
+  width:54px;
+  height:auto;
+  filter:drop-shadow(0 0 14px var(--glow));
+}
+
+.brand-text {
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+
+.brand-main {
+  font-family:Orbitron, sans-serif;
+  font-weight:900;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  font-size:.95rem;
+  color:var(--silver2);
+}
+
+.brand-sub {
+  font-size:.64rem;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:var(--purple2);
+}
+
+.navlinks {
+  display:flex;
+  gap:30px;
+  align-items:center;
+}
+
+.navlinks a {
+  text-decoration:none;
+  font-family:Orbitron, sans-serif;
+  font-size:.66rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:#b7bac2;
+}
+
+.navlinks a:hover { color:var(--purple2); }
+
+.nav-cta {
+  border:1px solid rgba(182,133,255,.55);
+  padding:10px 16px;
+  color:var(--silver2) !important;
+  box-shadow:0 0 24px rgba(127,53,216,.18);
+}
+
+
+/* --------------------------------------------------------------------------
+   4. HERO
+   .hero-wrap stacks .hero-copy and .hero-art on the same grid cell
+   (grid-column/row 1/-1 on both) so the orbit graphic sits behind the copy.
+   -------------------------------------------------------------------------- */
+.hero {
+  position:relative;
+  z-index:1;
+  min-height:100vh;
+  padding:126px 30px 80px;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+}
+
+.hero::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:url("faculty-guard-icon-purple.png") center right / min(640px, 46vw) auto no-repeat;
+  opacity:.10;
+}
+
+.hero::after {
+  content:"";
+  position:absolute;
+  right:-12vw;
+  top:8vh;
+  width:58vw;
+  aspect-ratio:1;
+  border-radius:50%;
+  border:1px solid rgba(182,133,255,.20);
+  box-shadow:
+    0 0 70px rgba(127,53,216,.12),
+    inset 0 0 100px rgba(216,220,226,.035);
+  animation:slowspin 28s linear infinite;
+}
+
+@keyframes slowspin {
+  from { transform:rotate(0deg); }
+  to { transform:rotate(360deg); }
+}
+
+.hero-wrap {
+  position:relative;
+  z-index:4;
+  max-width:1360px;
+  margin:auto;
+  width:100%;
+  display:grid;
+  grid-template-columns:1fr;
+  grid-template-rows:1fr;
+  align-items:center;
+  justify-items:center;
+}
+
+.hero-copy {
+  grid-column:1 / -1;
+  grid-row:1 / -1;
+  max-width:780px;
+  margin:0 auto;
+  text-align:center;
+  z-index:2;
+}
+
+.badge {
+  display:inline-flex;
+  padding:9px 14px;
+  border:1px solid rgba(182,133,255,.38);
+  background:rgba(127,53,216,.12);
+  color:var(--purple2);
+  font-family:Orbitron, sans-serif;
+  letter-spacing:.22em;
+  font-size:.68rem;
+  text-transform:uppercase;
+  margin-bottom:24px;
+}
+
+h1 {
+  font-family:Orbitron, sans-serif;
+  font-size:clamp(3.4rem, 7.8vw, 8.1rem);
+  line-height:.88;
+  letter-spacing:-.055em;
+  text-transform:uppercase;
+  margin-bottom:30px;
+  color:var(--silver2);
+  text-shadow:
+    0 0 26px rgba(216,220,226,.18),
+    0 0 60px rgba(127,53,216,.24);
+}
+
+h1 span {
+  color:transparent;
+  -webkit-text-stroke:1.5px var(--purple2);
+  text-shadow:0 0 28px rgba(127,53,216,.42);
+}
+
+.hero-lede {
+  font-size:clamp(1.05rem, 1.5vw, 1.28rem);
+  line-height:1.84;
+  color:#c3c0ca;
+  margin-bottom:22px;
+}
+
+.hero-lede strong { color:var(--silver2); }
+
+.hero-sub {
+  font-size:.92rem;
+  letter-spacing:.02em;
+  color:#a19dad;
+  margin-bottom:22px;
+}
+
+.hero-seo {
+  font-size:.86rem;
+  line-height:1.7;
+  color:#8b8794;
+  max-width:640px;
+  margin:0 auto 30px;
+}
+
+.actions {
+  display:flex;
+  gap:16px;
+  flex-wrap:wrap;
+  margin-bottom:26px;
+  justify-content:center;
+}
+
+.btn {
+  min-height:52px;
+  padding:15px 24px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  font-family:Orbitron, sans-serif;
+  font-size:.74rem;
+  letter-spacing:.17em;
+  text-transform:uppercase;
+  border:1px solid var(--line);
+  transition:.22s ease;
+}
+
+.btn:hover { transform:translateY(-2px); }
+
+.btn-primary {
+  background:linear-gradient(90deg, #54209d, #9f70ff);
+  color:white;
+  box-shadow:0 0 34px rgba(127,53,216,.28);
+  border-color:transparent;
+}
+
+.btn-secondary {
+  color:var(--silver2);
+  border-color:rgba(216,220,226,.30);
+  background:rgba(255,255,255,.035);
+}
+
+.signal {
+  display:flex;
+  gap:16px;
+  flex-wrap:wrap;
+  font-family:Orbitron, sans-serif;
+  font-size:.68rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--purple2);
+  justify-content:center;
+}
+
+.signal span {
+  padding-left:10px;
+}
+
+.signal span:not(:first-child) {
+  border-left:2px solid var(--silver);
+}
+
+.signal span:first-child {
+  padding-left:0;
+}
+
+.hero-art {
+  grid-column:1 / -1;
+  grid-row:1 / -1;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:380px;
+  width:100%;
+  max-width:540px;
+  margin:0 auto;
+  z-index:3;
+  pointer-events:none;
+}
+
+.orbit {
+  position:absolute;
+  inset:0;
+  margin:auto;
+  width:min(360px, 85%);
+  aspect-ratio:1;
+  border-radius:50%;
+  border:1px solid rgba(182,133,255,.22);
+  box-shadow:0 0 70px rgba(127,53,216,.10), inset 0 0 70px rgba(255,255,255,.035);
+  animation:slowspin 24s linear infinite;
+}
+
+.orbit::before {
+  content:"";
+  position:absolute;
+  inset:15%;
+  border-radius:50%;
+  border:1px solid rgba(216,220,226,.14);
+}
+
+
+/* --------------------------------------------------------------------------
+   5. TICKER
+   -------------------------------------------------------------------------- */
+.ticker {
+  position:relative;
+  z-index:2;
+  overflow:hidden;
+  border-block:1px solid var(--line);
+  background:rgba(0,0,0,.40);
+  padding:13px 0;
+}
+
+.ticker-track {
+  display:flex;
+  gap:38px;
+  width:max-content;
+  animation:ticker 32s linear infinite;
+}
+
+.ticker span {
+  white-space:nowrap;
+  font-family:Orbitron, sans-serif;
+  font-size:.72rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:#a9aab1;
+}
+
+.ticker b { color:var(--purple2); }
+
+@keyframes ticker {
+  from { transform:translateX(0); }
+  to { transform:translateX(-50%); }
+}
+
+
+/* --------------------------------------------------------------------------
+   6. SECTION BASE
+   Shared layout/typography primitives reused by every content section below.
+   -------------------------------------------------------------------------- */
+section {
+  position:relative;
+  z-index:2;
+  padding:110px 30px;
+}
+
+.wrap {
+  max-width:1220px;
+  margin:auto;
+}
+
+.kicker {
+  font-family:Orbitron, sans-serif;
+  color:var(--purple2);
+  font-size:.72rem;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  margin-bottom:14px;
+}
+
+.section-title {
+  font-family:Orbitron, sans-serif;
+  font-size:clamp(2.1rem, 5vw, 4.3rem);
+  line-height:1;
+  text-transform:uppercase;
+  margin-bottom:22px;
+}
+
+.copy {
+  max-width:760px;
+  color:#b8b3c0;
+  line-height:1.86;
+  font-size:1.05rem;
+}
+
+
+/* --------------------------------------------------------------------------
+   7. CARDS
+   Used for the Problem / Included / Reuse (Before-After) grids.
+   .cards.four = 4-col grid (Problem, Included); .cards.two = 2-col (Reuse).
+   -------------------------------------------------------------------------- */
+.cards {
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:18px;
+  margin-top:46px;
+}
+
+.cards.four { grid-template-columns:repeat(4, 1fr); }
+.cards.two { grid-template-columns:repeat(2, 1fr); }
+
+.card, .package {
+  background:
+    linear-gradient(180deg, rgba(30,32,38,.78), rgba(7,7,10,.9));
+  border:1px solid rgba(216,220,226,.13);
+  box-shadow:0 0 38px rgba(0,0,0,.30);
+  padding:30px;
+  position:relative;
+  overflow:hidden;
+}
+
+.card::before, .package::before {
+  content:"";
+  position:absolute;
+  top:0; left:0; right:0;
+  height:3px;
+  background:linear-gradient(90deg, #bfc3ca, #7f35d8, #eee);
+}
+
+.card img {
+  width:76px;
+  margin-bottom:22px;
+  filter:drop-shadow(0 0 16px rgba(127,53,216,.28));
+}
+
+.card-num {
+  font-family:Orbitron, sans-serif;
+  color:var(--purple2);
+  letter-spacing:.18em;
+  font-size:.74rem;
+  text-transform:uppercase;
+  margin-bottom:18px;
+}
+
+.card h3, .package h3 {
+  font-family:Orbitron, sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  margin-bottom:14px;
+}
+
+.card p, .package p {
+  color:#b8b3c0;
+  line-height:1.76;
+}
+
+
+/* --------------------------------------------------------------------------
+   8. TESTIMONIALS (currently unused)
+   No .quotes/.quote-card/.closing-line markup exists in index.html right
+   now — these rules are dead weight from a section that was removed (or
+   not yet added) to the page. Kept here, clearly labeled, so a future
+   testimonials section can reuse them intentionally instead of someone
+   rewriting duplicate rules elsewhere. Safe to delete if not planned.
+   -------------------------------------------------------------------------- */
+.quotes {
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:18px;
+  margin-top:46px;
+}
+
+.quote-card {
+  background:
+    linear-gradient(180deg, rgba(30,32,38,.78), rgba(7,7,10,.9));
+  border:1px solid rgba(216,220,226,.13);
+  box-shadow:0 0 38px rgba(0,0,0,.30);
+  padding:34px 30px 30px;
+  position:relative;
+  overflow:hidden;
+}
+
+.quote-card::before {
+  content:"\201C";
+  position:absolute;
+  top:2px;
+  left:18px;
+  font-family:Orbitron, sans-serif;
+  font-size:3.6rem;
+  line-height:1;
+  color:rgba(182,133,255,.32);
+}
+
+.quote-card p {
+  position:relative;
+  z-index:1;
+  margin-top:18px;
+  color:#d6d3dd;
+  font-size:1.08rem;
+  line-height:1.7;
+  font-style:italic;
+}
+
+.closing-line {
+  margin-top:42px;
+  font-family:Orbitron, sans-serif;
+  font-size:.95rem;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  color:var(--purple2);
+}
+
+
+/* --------------------------------------------------------------------------
+   9. PRICING PACKAGES
+   -------------------------------------------------------------------------- */
+.packages {
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:18px;
+  margin-top:48px;
+}
+
+.package { display:flex; flex-direction:column; }
+
+.package.featured {
+  border-color:rgba(182,133,255,.45);
+  transform:translateY(-10px);
+  box-shadow:0 0 46px rgba(127,53,216,.16);
+}
+
+.pkg-tag {
+  position:absolute;
+  top:14px;
+  right:14px;
+  font-family:Orbitron, sans-serif;
+  font-size:.58rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--silver2);
+  border:1px solid rgba(182,133,255,.55);
+  background:rgba(127,53,216,.20);
+  padding:6px 10px;
+}
+
+.price {
+  font-family:Orbitron, sans-serif;
+  font-size:3rem;
+  color:var(--silver2);
+  margin:18px 0;
+  text-shadow:0 0 22px rgba(127,53,216,.26);
+}
+
+.price-sub {
+  display:block;
+  font-family:Inter, system-ui, sans-serif;
+  font-size:.7rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--purple2);
+  margin-top:-10px;
+  margin-bottom:4px;
+}
+
+.list {
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-top:22px;
+}
+
+.list li {
+  color:#d4d1da;
+  line-height:1.55;
+  padding-left:24px;
+  position:relative;
+}
+
+.list li::before {
+  content:"◆";
+  position:absolute;
+  left:0;
+  color:var(--purple2);
+  font-size:.72rem;
+  top:.18em;
+}
+
+.list.lead li::before { content:"✦"; }
+
+.promise {
+  margin-top:22px;
+  font-family:Orbitron, sans-serif;
+  font-size:.74rem;
+  line-height:1.5;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--purple2);
+}
+
+.package .btn {
+  margin-top:24px;
+  width:100%;
+}
+
+
+/* --------------------------------------------------------------------------
+   10. FAQ
+   -------------------------------------------------------------------------- */
+.faq {
+  border:1px solid rgba(216,220,226,.13);
+  background:linear-gradient(180deg, rgba(30,32,38,.6), rgba(7,7,10,.75));
+  margin-top:16px;
+}
+
+.faq summary {
+  cursor:pointer;
+  list-style:none;
+  padding:22px 26px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  font-family:Orbitron, sans-serif;
+  font-size:.86rem;
+  letter-spacing:.03em;
+  text-transform:none;
+  color:var(--silver2);
+}
+
+.faq summary::-webkit-details-marker { display:none; }
+
+.faq summary::after {
+  content:"+";
+  font-family:Inter, system-ui, sans-serif;
+  font-size:1.4rem;
+  color:var(--purple2);
+  flex-shrink:0;
+  transition:.2s ease;
+}
+
+.faq[open] summary::after { content:"–"; }
+
+.faq-a {
+  padding:0 26px 24px;
+  color:#b8b3c0;
+  line-height:1.8;
+  font-size:.98rem;
+}
+
+
+/* --------------------------------------------------------------------------
+   11. FOUNDER / CREDENTIALS STRIP
+   -------------------------------------------------------------------------- */
+.cred-strip {
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:42px;
+}
+
+.cred-strip span {
+  border:1px solid rgba(182,133,255,.34);
+  background:rgba(127,53,216,.10);
+  color:var(--silver2);
+  font-family:Orbitron, sans-serif;
+  font-size:.66rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  padding:12px 17px;
+}
+
+
+/* --------------------------------------------------------------------------
+   12. FINAL CTA
+   Overrides .section-title / .copy to a lighter, non-uppercase treatment
+   for this section only.
+   -------------------------------------------------------------------------- */
+.final {
+  text-align:center;
+  background:radial-gradient(circle at center, rgba(127,53,216,.17), transparent 62%);
+}
+
+.final .section-title,
+.final .copy {
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 1.8rem;
+  color: var(--silver2);
+  text-transform: none;
+  letter-spacing: normal;
+  font-weight: 500;
+}
+
+.final .section-title {
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.final .copy {
+  margin: 0 auto 34px;
+  line-height: 1.4;
+}
+
+.final img {
+  width:150px;
+  margin-bottom:26px;
+  filter:drop-shadow(0 0 24px rgba(127,53,216,.28));
+}
+
+
+/* --------------------------------------------------------------------------
+   13. FOOTER
+   -------------------------------------------------------------------------- */
+footer {
+  position:relative;
+  z-index:2;
+  padding:40px 30px;
+  border-top:1px solid var(--line);
+  text-align:center;
+  color:#a6a4ad;
+  font-family:Orbitron, sans-serif;
+  font-size:.75rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+
+.footer-sub {
+  display:block;
+  margin-top:12px;
+  text-transform:none;
+  letter-spacing:.03em;
+  font-family:Inter, system-ui, sans-serif;
+  font-size:.74rem;
+  color:#7e7c85;
+}
+
+.footer-sub a { color:var(--purple2); text-decoration:none; }
+.footer-sub a:hover { text-decoration:underline; }
+
+
+/* --------------------------------------------------------------------------
+   14. RESPONSIVE BREAKPOINTS
+   Ordered widest to narrowest. The 600px tier is new — the previous file
+   jumped straight from a 980px tablet layout to nothing, so phone widths
+   (375–480px) were inheriting tablet spacing/sizing with no adjustment.
+   -------------------------------------------------------------------------- */
+@media (max-width:1180px) {
+  .cards.four { grid-template-columns:repeat(2, 1fr); }
+}
+
+@media (max-width:980px) {
+  .navlinks { display:none; }
+  .hero-copy { margin:auto; width:100%; max-width:690px; }
+  .cards, .packages, .quotes { grid-template-columns:1fr; }
+  .package.featured { transform:none; }
+  .hero::before {
+    background:url("faculty-guard-icon-purple.png") center 62% / 78vw auto no-repeat;
+    opacity:.08;
+  }
+}
+
+/* NEW: phone-width tier */
+@media (max-width:600px) {
+  .hero { padding:112px 20px 60px; }
+  .nav { padding:12px 20px; }
+  section { padding:70px 20px; }
+  .wrap { padding:0; }
+
+  .actions { flex-direction:column; align-items:stretch; }
+  .btn { width:100%; }
+
+  .signal { flex-direction:column; align-items:center; gap:8px; }
+  .signal span,
+  .signal span:not(:first-child) {
+    padding-left:0;
+    border-left:none;
+  }
+
+  .cred-strip { justify-content:center; }
+
+  .ticker span { font-size:.62rem; }
+
+  .hero-art { min-height:260px; }
+  .orbit { width:min(240px, 78%); }
+
+  .package.featured { border-color:rgba(182,133,255,.45); }
+}
+
+
+/* --------------------------------------------------------------------------
+   15. ACCESSIBILITY — REDUCED MOTION
+   The page has three infinite CSS animations (hero ring, orbit ring,
+   scrolling ticker). Users who've asked the OS to reduce motion get them
+   stopped rather than ignored.
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .hero::after,
+  .orbit,
+  .ticker-track {
+    animation:none;
+  }
+}
