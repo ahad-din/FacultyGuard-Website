@@ -1,20 +1,24 @@
 # FacultyGuard Website
 
-Static, single-page marketing site for Faculty Guard. GitHub- and Netlify-ready.
+Static, accessible, GitHub- and Netlify-ready website.
 
 ## Deploy
-1. Push the contents of this folder to the repository root.
+1. Upload the contents of this folder to the root of a GitHub repository.
 2. Connect the repository to the existing FacultyGuard Netlify site.
 3. Netlify will read `netlify.toml`; no build command is required.
-4. Confirm the production domain and update canonical/OG URLs if the domain differs from `facultyguard.com`.
+4. Confirm the production domain and update canonical URLs if the domain differs from `facultyguard.com`.
 
 ## Structure
-- `index.html` — Single-page site (hero, problem, what's included, product tiers, inside the starter system, reuse, FAQ, founder, closing CTA)
-- `404.html` — Not-found page
-- `netlify.toml` — Publish directory and security headers
-- `_redirects` — Canonical `/index.html` redirect and SPA-style fallback
-- `robots.txt`, `sitemap.xml` — SEO
-- `faculty-guard-*.png` — Brand icons and social-share logo
+- `index.html` — Home
+- `why-facultyguard.html` — Mission, method, philosophy, and terminology
+- `fg-systems.html` — Seven FacultyGuard Systems
+- `pricing.html` — Pricing
+- `faculty-profile.html` — Founder profile and professional background
+- `about.html` — Practice story and longer founder biography
+- `contact.html` — Netlify intake form
+- `thank-you.html` — Form confirmation
+- `privacy.html`, `terms.html`, `404.html` — Supporting pages
+- `assets/` — Shared CSS, JavaScript, and optimized brand images
 
 ## Version
-v2.0.0 — "Teach Without Apology" single-page redesign, July 2026.
+v2.0.0 — FacultyGuard content and implementation update, July 2026.
